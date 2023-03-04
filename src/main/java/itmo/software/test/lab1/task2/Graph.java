@@ -27,19 +27,21 @@ public class Graph {
     }
 
     public List<Integer> bfs(int s) {
-        boolean[] visited = new boolean[v];
+        if (adj.length != 0) {
+            boolean[] visited = new boolean[v];
 
-        LinkedList<Integer> queue
-                = new LinkedList<>();
+            LinkedList<Integer> queue
+                    = new LinkedList<>();
 
-        visit(visited, queue, s);
+            visit(visited, queue, s);
 
-        while (queue.size() != 0) {
-            s = queue.poll();
+            while (queue.size() != 0) {
+                s = queue.poll();
 
-            for (int v : adj[s]) {
-                if (!visited[v]) {
-                    visit(visited, queue, v);
+                for (int v : adj[s]) {
+                    if (!visited[v]) {
+                        visit(visited, queue, v);
+                    }
                 }
             }
         }

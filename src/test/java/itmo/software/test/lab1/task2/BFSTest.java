@@ -3,12 +3,23 @@ package itmo.software.test.lab1.task2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BFSTest {
+
+    @DisplayName("Testing algorithm on an empty graph")
+    @Test
+    void testEmptyGraph() {
+        Graph graph = new Graph(0);
+        var expectedPath = Collections.emptyList();
+        var actualPath = graph.bfs(0);
+        assertEquals(expectedPath, actualPath);
+    }
 
     @DisplayName("Testing algorithm on a graph with loop")
     @Test
