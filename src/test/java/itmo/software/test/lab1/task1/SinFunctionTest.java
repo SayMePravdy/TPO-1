@@ -49,7 +49,8 @@ public class SinFunctionTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {
-            3 * Math.PI, 4.999999 * Math.PI, 9 * Math.PI, 100.4 * Math.PI, -4 * Math.PI, -19 * Math.PI, -24.99999999 * Math.PI
+            3 * Math.PI, 4.999999 * Math.PI, 9 * Math.PI, 100.4 * Math.PI,
+            -1 * Math.PI / 2, -1 * Math.PI / 4, -1 * Math.PI, -3 * Math.PI / 2, -4 * Math.PI, -7 * Math.PI, -19 * Math.PI, -24.99999999 * Math.PI
     })
     @DisplayName("Testing a function on dots that are not in the range from 0 to 2pi")
     void testWithGreaterThen2PIDots(double dot) {
