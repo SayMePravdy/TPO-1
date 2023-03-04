@@ -14,94 +14,100 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FactTest {
+public class FactLogicTest {
+    private final String HUMAN_FACTS_SUCH = "Факты людей таковы!";
+    private final String HUMAN_FACTS_NOT_SUCH = "Факты людей не таковы!";
+    private final String DOLPHIN_FACTS_SUCH = "Факты дельфинов таковы!";
+    private final String DOLPHIN_FACTS_NOT_SUCH = "Факты дельфинов не таковы!";
+    private final Double DEFAULT_VALUE = 10d;
+
     @Test
     void onlyHumanPopulation_FactTrue_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         Earth earth = new Earth(List.of(human));
         assertAll(
-                () -> assertEquals(TruthState.SUCH, earth.getFact(human).getTruth().getTruthState(), "Факты людей таковы!")
+                () -> assertEquals(TruthState.SUCH, earth.getFact(human).getTruth().getTruthState(), HUMAN_FACTS_SUCH)
         );
     }
 
     @Test
     void onlyDolphinPopulation_FactTrue_test() {
-        List<Invention> dolphinInventions = createDolphinInventions(10);
+        List<Invention> dolphinInventions = createDolphinInventions(DEFAULT_VALUE);
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(dolphin));
         assertAll(
-                () -> assertEquals(TruthState.SUCH, earth.getFact(dolphin).getTruth().getTruthState(), "Факты дельфинов таковы!")
+                () -> assertEquals(TruthState.SUCH, earth.getFact(dolphin).getTruth().getTruthState(), DOLPHIN_FACTS_SUCH)
         );
     }
 
     @Test
     void noInPopulation_FactFalse_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         Earth earth = new Earth(List.of());
         assertAll(
-                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(human).getTruth().getTruthState(), "Факты людей не таковы!")
+                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(human).getTruth().getTruthState(), HUMAN_FACTS_NOT_SUCH)
         );
     }
 
     @Test
     void humanPopulation_FactTrue_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         List<Invention> dolphinInventions = createDolphinInventions(9);
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(human, dolphin));
         assertAll(
-                () -> assertEquals(TruthState.SUCH, earth.getFact(human).getTruth().getTruthState(), "Факты людей таковы!")
+                () -> assertEquals(TruthState.SUCH, earth.getFact(human).getTruth().getTruthState(), HUMAN_FACTS_SUCH)
         );
     }
 
     @Test
     void humanPopulation_FactFalse_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         List<Invention> dolphinInventions = createDolphinInventions(16);
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(human, dolphin));
         assertAll(
-                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(human).getTruth().getTruthState(), "Факты людей не таковы!")
+                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(human).getTruth().getTruthState(), HUMAN_FACTS_SUCH)
         );
     }
 
     @Test
     void dolphinPopulation_FactFalse_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         List<Invention> dolphinInventions = createDolphinInventions(9);
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(human, dolphin));
         assertAll(
-                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(dolphin).getTruth().getTruthState(), "Факты дельфинов не таковы!")
+                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(dolphin).getTruth().getTruthState(), DOLPHIN_FACTS_NOT_SUCH)
         );
     }
 
     @Test
     void humanPopulation_FactTrue_equalsInventions_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         List<Invention> dolphinInventions = createDolphinInventions(15);
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(human, dolphin));
         assertAll(
-                () -> assertEquals(TruthState.SUCH, earth.getFact(human).getTruth().getTruthState(), "Факты людей таковы!")
+                () -> assertEquals(TruthState.SUCH, earth.getFact(human).getTruth().getTruthState(), HUMAN_FACTS_SUCH)
         );
     }
 
     @Test
     void dolphinPopulation_FactTrue_equalsInventions_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         List<Invention> dolphinInventions = createDolphinInventions(15);
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(human, dolphin));
         assertAll(
-                () -> assertEquals(TruthState.SUCH, earth.getFact(dolphin).getTruth().getTruthState(), "Факты дельфинов таковы!")
+                () -> assertEquals(TruthState.SUCH, earth.getFact(dolphin).getTruth().getTruthState(), DOLPHIN_FACTS_SUCH)
         );
     }
 
@@ -113,19 +119,19 @@ public class FactTest {
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(human, dolphin));
         assertAll(
-                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(human).getTruth().getTruthState(), "Факты людей не таковы!")
+                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(human).getTruth().getTruthState(), HUMAN_FACTS_NOT_SUCH)
         );
     }
 
     @Test
     void dolphinPopulation_FactFalse_withoutInventions_test() {
-        List<Invention> humanInventions = createHumanInventions(10);
+        List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
         List<Invention> dolphinInventions = List.of();
         Population dolphin = new Dolphin(dolphinInventions);
         Earth earth = new Earth(List.of(human, dolphin));
         assertAll(
-                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(dolphin).getTruth().getTruthState(), "Факты дельфинов не таковы!")
+                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(dolphin).getTruth().getTruthState(), DOLPHIN_FACTS_NOT_SUCH)
         );
     }
 
