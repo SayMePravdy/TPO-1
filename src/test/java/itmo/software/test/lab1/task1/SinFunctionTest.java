@@ -39,7 +39,7 @@ public class SinFunctionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {0.1, 0.334, 0.987, 1.29, 1.5, 1.98, 2.44, 2.765, 2.999, 3.12})
+    @ValueSource(doubles = {0.1, 0.334, 0.666, 0.987, 1.29, 1.5, 1.98, 2.44, 2.765, 2.999, 3.12, 3.44, 3.78, 3.998, 4.123, 4.55, 4.88, 5.389, 5.79, 6.09})
     @DisplayName("Testing a function on random dots ")
     void testRandomValue(double dot) {
         assertAll(
