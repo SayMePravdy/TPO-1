@@ -1,11 +1,12 @@
 package itmo.software.test.lab1.task2;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Graph {
     private int v;
-    private final LinkedList<Integer>[] adj;
-    private int cnt = 0;
+    private final List<Integer>[] adj;
+    private final List<Integer> path = new LinkedList<>();
 
     Graph(int v) {
         this.v = v;
@@ -22,14 +23,10 @@ public class Graph {
     void visit(boolean[] visited, LinkedList<Integer> queue, int s) {
         visited[s] = true;
         queue.add(s);
-        cnt++;
+        path.add(s);
     }
 
-    public void resetCounter() {
-        cnt = 0;
-    }
-
-    public int bfs(int s) {
+    public List<Integer> bfs(int s) {
         boolean[] visited = new boolean[v];
 
         LinkedList<Integer> queue
@@ -46,7 +43,7 @@ public class Graph {
                 }
             }
         }
-        return cnt;
+        return path;
     }
 }
 
