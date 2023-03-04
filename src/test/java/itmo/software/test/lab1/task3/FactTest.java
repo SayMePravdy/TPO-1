@@ -36,6 +36,16 @@ public class FactTest {
     }
 
     @Test
+    void noInPopulation_FactFalse_test() {
+        List<Invention> humanInventions = createHumanInventions(10);
+        Population human = new Human(humanInventions);
+        Earth earth = new Earth(List.of());
+        assertAll(
+                () -> assertEquals(TruthState.NOT_SUCH, earth.getFact(human).getTruth().getTruthState(), "Факты людей не таковы!")
+        );
+    }
+
+    @Test
     void humanPopulation_FactTrue_test() {
         List<Invention> humanInventions = createHumanInventions(10);
         Population human = new Human(humanInventions);
