@@ -7,6 +7,8 @@ import itmo.software.test.lab1.task3.planet.Earth;
 import itmo.software.test.lab1.task3.resident.Dolphin;
 import itmo.software.test.lab1.task3.resident.Human;
 import itmo.software.test.lab1.task3.resident.Population;
+import jdk.jfr.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -22,6 +24,13 @@ public class FactLogicTest {
     private final Double DEFAULT_VALUE = 10d;
 
     @Test
+    @DisplayName("Проверка таковости фактов людей, при населении только ими планеты")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей
+            Создать людей, прикрепив к ним изобретения
+            Создать Землю, населив её людьми
+            """)
     void onlyHumanPopulation_FactTrue_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
@@ -32,6 +41,13 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка таковости фактов дельфинов, при населении только ими планеты")
+    @Description(""" 
+            Predictions:
+            Создать изобретения дельфинов
+            Создать дельфинов, прикрепив к ним изобретения
+            Создать Землю, населив её дельфинами
+            """)
     void onlyDolphinPopulation_FactTrue_test() {
         List<Invention> dolphinInventions = createDolphinInventions(DEFAULT_VALUE);
         Population dolphin = new Dolphin(dolphinInventions);
@@ -42,6 +58,13 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка не таковости фактов людей, при не населении ими планеты")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей
+            Создать Людей, прикрепив к ним изобретения
+            Создать Землю, не населив её никем
+            """)
     void noInPopulation_FactFalse_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
@@ -52,6 +75,16 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка таковости фактов людей, при внесении ими большего вклада в изобретения")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей, ценнее, чем у дельфинов
+            Создать изобретения дельфинов
+            Создать людей
+            Создать дельфинов
+            Прикрепить соотвественно изобретения
+            Создать Землю, заселив её дельфинами и людьми
+            """)
     void humanPopulation_FactTrue_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
@@ -64,6 +97,16 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка не таковости фактов людей, при внесении ими меньшего вклада в изобретения")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей
+            Создать изобретения дельфинов, ценнее, нежели у людей
+            Создать людей
+            Создать дельфинов
+            Прикрепить соотвественно изобретения
+            Создать Землю, заселив её дельфинами и людьми
+            """)
     void humanPopulation_FactFalse_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
@@ -76,6 +119,16 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка не таковости фактов дельфинов, при внесении ими меньшего вклада в изобретения")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей, ценнее, нежели у дельфинов
+            Создать изобретения дельфинов
+            Создать людей
+            Создать дельфинов
+            Прикрепить соотвественно изобретения
+            Создать Землю, заселив её дельфинами и людьми
+            """)
     void dolphinPopulation_FactFalse_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
@@ -88,6 +141,16 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка таковости фактов людей, при внесении ими равного с дельфинами вклада в изобретения")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей, по ценности равными вкладу дельфинов
+            Создать изобретения дельфинов, по ценности равными вкладу людей
+            Создать людей
+            Создать дельфинов
+            Прикрепить соотвественно изобретения
+            Создать Землю, заселив её дельфинами и людьми
+            """)
     void humanPopulation_FactTrue_equalsInventions_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
@@ -100,6 +163,16 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка таковости фактов дельфинов, при внесении ими равного с дельфинами вклада в изобретения")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей, по ценности равными вкладу дельфинов
+            Создать изобретения дельфинов, по ценности равными вкладу людей
+            Создать людей
+            Создать дельфинов
+            Прикрепить соотвественно изобретения
+            Создать Землю, заселив её дельфинами и людьми
+            """)
     void dolphinPopulation_FactTrue_equalsInventions_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
@@ -112,6 +185,15 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка не таковости фактов людей, при не внесении ими вклада в изобретения")
+    @Description(""" 
+            Predictions:
+            Создать изобретения дельфинов
+            Создать людей
+            Создать дельфинов
+            Прикрепить соотвественно изобретения
+            Создать Землю, заселив её дельфинами и людьми
+            """)
     void humanPopulation_FactFalse_withoutInventions_test() {
         List<Invention> humanInventions = List.of();
         Population human = new Human(humanInventions);
@@ -124,6 +206,15 @@ public class FactLogicTest {
     }
 
     @Test
+    @DisplayName("Проверка не таковости фактов дельфинов, при не внесении ими вклада в изобретения")
+    @Description(""" 
+            Predictions:
+            Создать изобретения людей
+            Создать людей
+            Создать дельфинов
+            Прикрепить соотвественно изобретения
+            Создать Землю, заселив её дельфинами и людьми
+            """)
     void dolphinPopulation_FactFalse_withoutInventions_test() {
         List<Invention> humanInventions = createHumanInventions(DEFAULT_VALUE);
         Population human = new Human(humanInventions);
